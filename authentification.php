@@ -1,6 +1,5 @@
-<link rel="stylesheet" href="style.css">
-
 <?php 
+session_start(); // démarre la session 
 include_once 'connexion.php';
 
 $identifiant = $_POST['i'];
@@ -9,7 +8,10 @@ $motDePasse = $_POST['m'];
 
 $connexion = $test -> selectUtilisateur($identifiant, $motDePasse);
 $count = count($connexion);
-
+if ($count == 1) {
+  $_SESSION['identifiant'] = $connexion[0]['identifiant'];//déclare la variable session
+  header('location: premier.php');
+}
 if ($count == 1) { //!empty($connexion) permet de vérifier si l'élément est vide. C'est une fonction php.
     $colRole = $test ->selectRole($identifiant, $motDePasse);
     $role = $colRole[0]['role'];

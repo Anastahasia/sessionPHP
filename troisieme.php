@@ -14,8 +14,11 @@
 <?php
 session_start();
 
-session_unset();
-session_destroy();
+
+session_unset(); //supprime les variables 
+
+session_destroy(); // ferme la session
+ var_dump($_SESSION);
 
 echo 'Vous êtes déconnecté'
 ?>
